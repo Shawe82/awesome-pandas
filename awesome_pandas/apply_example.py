@@ -18,3 +18,15 @@ import swifter
 
 result_swifter = df.swifter.apply(dummy_func, axis=1)
 result_swifter = df.swifter.progress_bar(True).apply(dummy_func, axis=1)
+
+from time import time
+
+ts = time()
+df.swifter.apply(dummy_func, axis=1)
+t_swifter = time() - ts
+
+ts = time()
+df.apply(dummy_func, axis=1)
+t_normal = time() - ts
+
+print(t_normal / t_swifter)
